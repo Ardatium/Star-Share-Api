@@ -1,11 +1,13 @@
 import Equipment from '#components/equipment/equipment-model.js'
 import Joi from 'joi'
+import logger from '../../logger'
 
 export async function getEquipmentList(ctx) {
     try {
         const result = await Equipment.find({})
         ctx.ok(result)
     } catch(e) {
+        logger.error(e.message)
         ctx.badRequest({ message: e.message })
     }
 }
@@ -15,6 +17,7 @@ export async function getEquipment(ctx) {
         const result = await Equipment.findById(ctx.params.id)
         ctx.ok(result)
     } catch(e) {
+        logger.error(e.message)
         ctx.badRequest({ message: e.message })
     }
 }
@@ -37,6 +40,7 @@ export async function createEquipment(ctx) {
         const result = await Equipment.create(value)
         ctx.ok(result)
     } catch(e) {
+        logger.error(e.message)
         ctx.badRequest({ message: e.message })
     }
 }
@@ -59,6 +63,7 @@ export async function updateEquipment(ctx) {
         const result = await Equipment.findByIdAndUpdate(ctx.params.id, value, { runValidators: true, new: true })
         ctx.ok(result)
     } catch (e) {
+        logger.error(e.message)
         ctx.badRequest({ message: e.message })
     }
 }
@@ -68,6 +73,7 @@ export async function deleteEquipment(ctx) {
         const result = await Equipment.findByIdAndDelete(ctx.params.id)
         ctx.ok(result)
     } catch (e) {
+        logger.error(e.message)
         ctx.badRequest({ message: e.message })
     }
 }
@@ -77,6 +83,7 @@ export async function getEquipmentByOwner(ctx) {
         const result = await Equipment.find({owner: ctx.params.id})
         ctx.ok(result)
     } catch (e) {
+        logger.error(e.message)
         ctx.badRequest({ message: e.message})
     }
 }

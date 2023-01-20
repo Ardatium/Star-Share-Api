@@ -6,6 +6,7 @@ export async function getSessionList(ctx) {
         const result = await Session.find({})
         ctx.ok(result)
     } catch(e) {
+        logger.error(e.message)
         ctx.badRequest({ message: e.message })
     }
 }
@@ -15,6 +16,7 @@ export async function getSession(ctx) {
         const result = await Session.findById(ctx.params.id)
         ctx.ok(result)
     } catch(e) {
+        logger.error(e.message)
         ctx.badRequest({ message: e.message })
     }
 }
@@ -39,6 +41,7 @@ export async function createSession(ctx) {
         const result = await Session.create(value)
         ctx.ok(result)
     } catch(e) {
+        logger.error(e.message)
         ctx.badRequest({ message: e.message })
     }
 }
@@ -63,6 +66,7 @@ export async function updateSession(ctx) {
         const result = await Session.findByIdAndUpdate(ctx.params.id, value, { runValidators: true, new: true })
         ctx.ok(result)
     } catch (e) {
+        logger.error(e.message)
         ctx.badRequest({ message: e.message })
     }
 }
@@ -72,6 +76,7 @@ export async function deleteSession(ctx) {
         const result = await Session.findByIdAndDelete(ctx.params.id)
         ctx.ok(result)
     } catch (e) {
+        logger.error(e.message)
         ctx.badRequest({ message: e.message })
     }
 }
@@ -81,6 +86,7 @@ export async function getSessionByUser(ctx) {
         const result = await Session.find($or[{organizer: req.params.id},{participants: req.params.id}])
         ctx.ok(result)
     } catch (e) {
+        logger.error(e.message)
         ctx.badRequest({ message: e.message})
     }
 } 

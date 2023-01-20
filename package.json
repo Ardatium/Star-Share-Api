@@ -29,7 +29,8 @@
     "koa-respond": "^2.1.0",
     "koa-static": "^5.0.0",
     "mongoose": "^6.8.2",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "winston": "^3.8.2"
   },
   "type": "module",
   "imports": {
